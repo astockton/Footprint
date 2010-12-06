@@ -105,3 +105,8 @@ table#destinationTable span.progressIndicator {
 table#destinationTable input.updateDestinationInfoButton {
 	margin-left:12px;
 }
+
+.userinfo .inner {
+	float: left;
+	height: 210px !important;
+}

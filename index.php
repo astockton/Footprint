@@ -43,9 +43,9 @@ tmpl('header');
 	?>
 	
 	<div class="userinfo">
-		<img src="img/me.jpg"/>
+		<img src="<?php echo $user_info['photo']; ?>"/>
 		<div class="inner">
-			<h1><?php echo $user_info['firstname']; ?> <?php echo $user_info['lastname']; ?></h1><br/>
+			<h1><?php echo $user_info['firstname']; ?> <?php echo $user_info['lastname']; ?></h1>
 			<div id="stat">
 				<p><b>Level:</b> 70 <b>Rank:</b> Nature God</p>
 			</div>
