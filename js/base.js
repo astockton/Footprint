@@ -200,5 +200,6 @@ function calcSphDistance(startLat, startLong, endLat, endLong) {
 	startLong = startLong*Math.PI/180;
 	endLat = endLat*Math.PI/180;
 	endLong = endLong*Math.PI/180;
-	return Math.acos(Math.sin(startLat)*Math.sin(endLat) + Math.cos(startLat)*Math.cos(endLat)*Math.cos(endLong-startLong))*3958.756;
+	distance = Math.acos(Math.sin(startLat)*Math.sin(endLat) + Math.cos(startLat)*Math.cos(endLat)*Math.cos(endLong-startLong))*3958.756;
+	return distance;
 }

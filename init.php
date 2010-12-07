@@ -37,16 +37,16 @@ function tmpl($string) {
 	require("template/" . $string . ".php");
 }
 
-function calcSphDistance($startLat, $startLong, $endLat, $endLong) {
-	$startLat = deg2rad($startLat);
-	$startLong = deg2rad($startLong);
+/*function calcSphDistance($startLat, $startLong, $endLat, $endLong) {
+//	$startLat = deg2rad($startLat);
+//	$startLong = deg2rad($startLong);
 	$endLat = deg2rad($endLat);
 	$endLong = deg2rad($endLong);
 	$distance = acos(sin($startLat)*sin($endLat) + cos($startLat)*cos($endLat)*cos($endLong-$startLong))*6371;
 	
 	return $distance;	
 }
-	
+*/	
 function selectValueChecker($actualVal, $selectionVal) {
 	if ($actualVal == $selectionVal) {
 		return " selected='selected'";

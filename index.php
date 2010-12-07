@@ -90,7 +90,7 @@ tmpl('header');
 		</div>
 	<script type='text/javascript' language='JavaScript'>
 		var homebaseGeoLat = <?php echo($_SESSION["homebase"]["geolat"]); ?>;
-		var homebaseGeoLong = <?php echo($_SESSION["homebase"]["geolat"]); ?>; 
+		var homebaseGeoLong = <?php echo($_SESSION["homebase"]["geolong"]); ?>; 
 	</script>
 	<?php		
 		
