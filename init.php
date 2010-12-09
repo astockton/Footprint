@@ -63,4 +63,25 @@ function parseFoursquareDate($foursquareDate) {
 	return $month." ".$day.", 20".$year;
 }
 
+// build a mysql date so that we can sort checkins by date
+function getCheckinDate($foursquareDate) {
+	$monthArray = array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
+	$day = substr($foursquareDate, 5, 2);
+	$monthStr = substr($foursquareDate, 8, 3);
+	$monthNum = 0;
+	for( $i=0; $i < 12; $i++ ) {
+		if( $monthArray[$i] == $monthStr ) { $monthNum = $i+1; }
+	}
+	$year = substr($foursquareDate, 12, 2);
+	return "20".$year."-".$monthNum."-".$day;
+}
+
+//function for finding the date two weeks in the past
+function weeksAgo($x) {
+	$dateTime = date('c');
+	$dateTimeArray = explode("T", $dateTime);
+	$twoWeeksAgoGibberish = strtotime( '-'.$x.' week' , strtotime ($dateTimeArray[0]) );
+	$twoWeeksAgo = date ( 'Y-m-j' , $twoWeeksAgoGibberish );
+	return $twoWeeksAgo;
+}
 ?>

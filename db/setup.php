@@ -15,6 +15,7 @@ if (mysql_connect($db_host, $db_user, $db_pass)) {
         `userid` int(10) unsigned NOT NULL DEFAULT '0',
         `foursquarevid` int(10) unsigned NOT NULL DEFAULT '0',
         `checkintime` varchar(45) NOT NULL DEFAULT '0',
+        `checkindate` DATE NOT NULL,
         `mileage` float unsigned NOT NULL DEFAULT '0',
         `transportmode` varchar(10) DEFAULT '0',
         `ignorecheckin` tinyint(1) NOT NULL DEFAULT '0',

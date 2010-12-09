@@ -32,6 +32,7 @@ $(function() {
 		//clear all progress indicator spans
 		$('span.progressIndicator').html("");
 		saveDestinationInfo($(this).parent().parent());
+		$('#updateNote').show();
 	});
 	
 	

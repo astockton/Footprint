@@ -32,6 +32,12 @@ tmpl('header');
 <?php }else{ // user is logged in ?>
 	
 	<?php
+	$curPeriod = mysql_query("select sum(mileage) as mileagesum from destinations where userid='".$_SESSION['currentUserID']."' and transportmode='self' and checkindate >= '".weeksAgo(2)."'");
+	$pastPeriod = mysql_query("select sum(mileage) as mileagesum from destinations where userid='".$_SESSION['currentUserID']."' and transportmode='self' and checkindate >= '".weeksAgo(4)."' and checkindate < '".weeksAgo(2)."'");
+	$curPeriodSelfPow = round(mysql_fetch_object($curPeriod)->mileagesum,2);
+	$pastPeriodSelfPow = round(mysql_fetch_object($pastPeriod)->mileagesum,2);
+	$selfPowMileageDif = $curPeriodSelfPow - $pastPeriodSelfPow;
+	
 	//get mileage info
 	$result = mysql_query("select sum(mileage) as mileagesum from destinations where userid='".$_SESSION['currentUserID']."' and transportmode='self'");
 	$selfPowMileage = round(mysql_fetch_object($result)->mileagesum,2);
@@ -82,9 +88,14 @@ tmpl('header');
 						/* this messaging should be dynamic based on heuristics that we specify
 						 * 
 						 */
+						 if( $selfPowMileageDif > 0 )
+							echo 'In the past 14 days, you\'ve racked up <span class=\'mileageSum\'>'.$selfPowMileage.'</span> miles on foot, which is <span class=\'mileageSum\'>'.$selfPowMileageDif.'</span> more than your previous 14 days total.  Nice work!';
+						else
+							echo 'In the past 14 days, you\'ve racked up <span class=\'mileageSum\'>'.$selfPowMileage.'</span> miles on foot, which is <span class=\'mileageSum\'>'.( $selfPowMileageDif * -1 ).'</span> less than your previous 14 days total.  Nice work!';
 					?>
-					In the past 14 days, you've racked up <span class='mileageSum'><?php echo($selfPowMileage);?></span> miles on foot, which is <span class='mileageSum'>##</span> more than your previous 14 day total.  Nice work!
+					
 				</div>
+								<div id="updateNote" style="display:none;color:#FFFF88"><span>**You have updated your info, please refresh the page to update you new mileage numbers</span></div>
 			</div>
 			<br clear="all" />
 		</div>

@@ -82,13 +82,14 @@
 			if (isset($currentVenue->venue->id)) {
 				$currentVID = $currentVenue->venue->id;
 				$currentVenueCheckinTime = $currentVenue->created;
+				$currentVenueCheckinDate = getCheckinDate($currentVenueCheckinTime);
 				$currentVenueLongURL = "http://foursquare.com/venue/".$currentVID;
 				$currentVenueName = htmlspecialchars($currentVenue->venue->name, ENT_QUOTES);
 				$currentFoursquareCheckinID = $currentVenue->id;
 				$currentVenueGeoLat = $currentVenue->venue->geolat;
 				$currentVenueGeoLong = $currentVenue->venue->geolong;
 				//insert data into database
-				$result = mysql_query("insert into destinations (userid, foursquarevid, checkintime, foursquareurl, geolat, geolong, foursquarecheckinid, venuename) values ('".$_SESSION['currentUserID']."', '".$currentVID."', '".$currentVenueCheckinTime."', '".$currentVenueLongURL."', '".$currentVenueGeoLat."', '".$currentVenueGeoLong."', '".$currentFoursquareCheckinID."', '".$currentVenueName."')");
+				$result = mysql_query("insert into destinations (userid, foursquarevid, checkintime, checkindate, foursquareurl, geolat, geolong, foursquarecheckinid, venuename) values ('".$_SESSION['currentUserID']."', '".$currentVID."', '".$currentVenueCheckinTime."', '".$currentVenueCheckinDate."','".$currentVenueLongURL."', '".$currentVenueGeoLat."', '".$currentVenueGeoLong."', '".$currentFoursquareCheckinID."', '".$currentVenueName."')");
 				//echo("number of affected rows:".mysql_num_rows($result));
 			}
 		}
